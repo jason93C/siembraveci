@@ -44,7 +44,11 @@ admin.add_view(ModelView(Producto, db.session))
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    logo = {
+        'nombre': 'logo',
+        'imagen': 'primera.png'  # Solo el nombre del archivo
+    }
+    return render_template('index.html', logo=logo)
 
 @app.route("/inicio/")
 def inicio():
