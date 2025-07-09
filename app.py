@@ -50,11 +50,11 @@ def home():
 def inicio():
     return render_template("index.html")
 
-@app.route("/ejemplo1")
+@app.route("/plantilla1")
 def ejemplo1():
     return render_template("plantilla1.html")
 
-@app.route("/ejemplo2")
+@app.route("/plantilla2")
 def ejemplo2():
     return render_template("plantilla2.html")
 
