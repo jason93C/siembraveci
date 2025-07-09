@@ -46,7 +46,7 @@ admin.add_view(ModelView(Producto, db.session))
 def home():
     logo = {
         'nombre': 'logo',
-        'imagen': 'primera.png'  # Solo el nombre del archivo
+        'imagen': 'segunda.png'  # Solo el nombre del archivo
     }
     return render_template('index.html', logo=logo)
 
