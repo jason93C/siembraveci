@@ -6,7 +6,7 @@ from flask_admin.contrib.sqla import ModelView
 import psycopg2
 
 conn = psycopg2.connect(
-    host="psql -h dpg-d1o704ffte5s73aubihg-a.oregon-postgres.render.com",
+    host="dpg-d1o704ffte5s73aubihg-a.oregon-postgres.render.com",
     database="tienda_siembraveci",
     user="jason",
     password="PhIdQ6RtPUEAaHbvhtC2XHIiC98bEqOR"
