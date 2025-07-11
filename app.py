@@ -16,7 +16,7 @@ app = Flask(__name__)
 app.secret_key = 'Rr_123456'
 
 # Conexión con PostgreSQL
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:ja593one.@localhost/tienda_siembraveci'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://jason:PhIdQ6RtPUEAaHbvhtC2XHIiC98bEqOR@dpg-d1o704ffte5s73aubihg-a.oregon-postgres.render.com:5432/tienda_siembraveci'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar SQLAlchemy directamente
