@@ -3,6 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
+import psycopg2
+
+conn = psycopg2.connect(
+    host="psql -h dpg-d1o704ffte5s73aubihg-a.oregon-postgres.render.com",
+    database="tienda_siembraveci",
+    user="jason",
+    password="PhIdQ6RtPUEAaHbvhtC2XHIiC98bEqOR"
+)
 # Crear la app Flask
 app = Flask(__name__)
 app.secret_key = 'Rr_123456'
@@ -41,6 +49,9 @@ admin = Admin(app, name='Panel Admin', template_mode='bootstrap3')
 admin.add_view(ModelView(Usuario, db.session))
 admin.add_view(ModelView(Categoria, db.session))
 admin.add_view(ModelView(Producto, db.session))
+
+
+
 
 @app.route("/")
 def home():
