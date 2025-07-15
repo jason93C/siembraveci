@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import AdminIndexView
-from flask import redirect, url_for, session, reque
+from flask import redirect, url_for, session, request
 import psycopg2
 
 conn = psycopg2.connect(
