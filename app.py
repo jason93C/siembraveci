@@ -42,8 +42,7 @@ class SecureModelView(ModelView):
         return redirect(url_for('admin_login'))
     def render(self, name, value, **kwargs):
 
-        kwargs["logout_button"] = Markup ('<a class = "btn btn-danger" href="/admin/logout">cerrar sesion</a>') = True
-
+        kwargs["logout_button"] = Markup('<a class = "btn btn-danger" href="/admin/logout">cerrar sesion</a>')
 # Modelos
 class Categoria(db.Model):
     __tablename__ = 'categorias'
