@@ -1,9 +1,11 @@
 from flask import Flask, request, render_template
+from markupsafe import Markup
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_admin import AdminIndexView
 from flask import redirect, url_for, session, request
+from flask_admin.menu import MenuLink
 import psycopg2
 
 conn = psycopg2.connect(
@@ -38,6 +40,9 @@ class SecureModelView(ModelView):
 
     def inaccessible_callback(self, name, **kwargs):
         return redirect(url_for('admin_login'))
+    def render(self, name, value, **kwargs):
+
+        kwargs["logout_button"] = Markup ('<a class = "btn btn-danger" href="/admin/logout">cerrar sesion</a>') = True
 
 # Modelos
 class Categoria(db.Model):
@@ -67,7 +72,7 @@ admin = Admin(app, name='Panel Admin', template_mode='bootstrap3', index_view=My
 admin.add_view(ModelView(Usuario, db.session))
 admin.add_view(ModelView(Categoria, db.session))
 admin.add_view(ModelView(Producto, db.session))
-
+admin.add_link(MenuLink(name='cerrar sesion',category='',url='/admin/logout/'))
 
 
 
