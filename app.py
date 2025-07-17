@@ -61,7 +61,7 @@ class Producto(db.Model):
     imagen = db.Column(db.String(200))
     precio = db.Column(db.Float, nullable=False)
     id_categoria = db.Column(db.Integer, db.ForeignKey('categorias.id_categoria'), nullable=False)
-    categoria = db.relationship('categoria', backref='productos')
+    categoria = db.relationship('Categoria', backref='productos')
 
 class Usuario(db.Model):
     __tablename__ = 'usuarios'
