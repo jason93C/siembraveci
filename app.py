@@ -80,22 +80,22 @@ class ProductoAdmin(ModelView):
         url_relative_path='static/uploads/')
 }
     form_overrides = {
-'id_categoria': SelectField
-}
-form_columns = ['nombre', 'descripcion', 'imagen', 'precio',
+    'id_categoria': SelectField
+    }
+    form_columns = ['nombre', 'descripcion', 'imagen', 'precio',
 'id_categoria']
 # Sobrescribimos el tipo de campo
 form_overrides = {
-'id_categoria': SelectField
+    'id_categoria': SelectField
 }
 # Configuramos el comportamiento del SelectField
 form_args = {
-'id_categoria': {
-'coerce': int,
+    'id_categoria': {
+    'coerce': int,
+    'label': 'Categoría'
+    }
+}
 
-'label': 'Categoría'
-}
-}
 # Llenamos las opciones para el campo select (crear)
 def create_form(self, obj=None):
     form = super().create_form(obj)
