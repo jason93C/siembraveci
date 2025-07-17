@@ -109,7 +109,7 @@ admin = Admin(app, name='Panel Admin', template_mode='bootstrap3', index_view=My
 admin.add_view(ModelView(Usuario, db.session))
 admin.add_view(ModelView(Categoria, db.session))
 admin.add_view(ProductoAdmin(Producto, db.session))
-admin.add_link(MenuLink(name='cerrar sesion',category='',url='/admin/logout/'))
+admin.add_link(MenuLink(name='cerrar sesion',category='', url='/admin/logout'))
 
 
 
