@@ -79,35 +79,30 @@ class ProductoAdmin(ModelView):
         relative_path='uploads/',
         url_relative_path='static/uploads/')
 }
+    # Sobrescribimos el tipo de campo
     form_overrides = {
     'id_categoria': SelectField
     }
-    form_columns = ['nombre', 'descripcion', 'imagen', 'precio',
-'id_categoria']
-# Sobrescribimos el tipo de campo
-form_overrides = {
-    'id_categoria': SelectField
-}
+    form_columns = ['nombre', 'descripcion', 'imagen', 'precio','id_categoria']
+
 # Configuramos el comportamiento del SelectField
-form_args = {
-    'id_categoria': {
-    'coerce': int,
-    'label': 'Categoría'
+    form_args = {
+        'id_categoria': {
+        'coerce': int,
+        'label': 'Categoría'
     }
 }
 
 # Llenamos las opciones para el campo select (crear)
-def create_form(self, obj=None):
-    form = super().create_form(obj)
-    form.id_categoria.choices = [(c.id_categoria, c.nom_categoria) for c
-    in Categoria.query.all()]
-    return form
+    def create_form(self, obj=None):
+        form = super().create_form(obj)
+        form.id_categoria.choices = [(c.id_categoria, c.nom_categoria) for c in Categoria.query.all()]
+        return form
 # Llenamos las opciones para el campo select (editar)
-def edit_form(self, obj=None):
-    form = super().edit_form(obj)
-    form.id_categoria.choices = [(c.id_categoria, c.nom_categoria) for c
-    in Categoria.query.all()]
-    return form
+    def edit_form(self, obj=None):
+        form = super().edit_form(obj)
+        form.id_categoria.choices = [(c.id_categoria, c.nom_categoria) for c in Categoria.query.all()]
+        return form
 
 # Flask-Admin
 admin = Admin(app, name='Panel Admin', template_mode='bootstrap3', index_view=MyAdminIndexView())
