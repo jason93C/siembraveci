@@ -185,16 +185,16 @@ def ejemplo1():
 def ejemplo2():
     return render_template("plantilla2.html")
 
-@app.route('/productos')
+@app.route("/productos")
 def mostrar_productos():
     productos = Producto.query.all()
     return render_template('productos.html', productos=productos)
 
-@app.route('/servicios')
+@app.route("/servicios")
 def servicios():
     return render_template("plantilla2.html")
 
-@app.route('/ventas')
+@app.route("/ventas")
 def ventas():
     productos = Producto.query.all()
     return render_template('ventas.html', productos=productos)
