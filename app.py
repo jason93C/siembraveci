@@ -112,6 +112,57 @@ admin.add_view(ProductoAdmin(Producto, db.session))
 admin.add_link(MenuLink(name='cerrar sesion',category='', url='/admin/logout'))
 
 
+# Agregar al carrito
+@app.route('/agregar/<int:id>')
+def agregar_al_carrito(id):
+    if "carrito" not in session:
+        session["carrito"] = {}
+
+    carrito = session["carrito"]
+
+    if str(id) in carrito:
+        carrito[str(id)] += 1
+    else:
+        carrito[str(id)] = 1
+
+    session["carrito"] = carrito
+    return redirect(url_for('tienda'))
+
+# Ver carrito
+@app.route('/carrito')
+def ver_carrito():
+    carrito = session.get("carrito", {})
+    total = 0
+    detalle = []
+
+    for id, cantidad in carrito.items():
+        prod = Producto.query.get(int(id))
+        if prod:
+            subtotal = prod.precio * cantidad
+            total += subtotal
+            detalle.append({
+                "id": prod.id,
+                "nombre": prod.nombre,
+                "precio": prod.precio,
+                "cantidad": cantidad,
+                "subtotal": subtotal
+            })
+
+    return render_template("carrito.html", carrito=detalle, total=total)
+
+# Eliminar un producto del carrito
+@app.route('/eliminar/<int:id>')
+def eliminar_producto(id):
+    carrito = session.get("carrito", {})
+    carrito.pop(str(id), None)
+    session["carrito"] = carrito
+    return redirect(url_for('ver_carrito'))
+
+# Vaciar carrito
+@app.route('/vaciar')
+def vaciar_carrito():
+    session.pop("carrito", None)
+    return redirect(url_for('tienda'))
 
 
 @app.route("/")
@@ -136,7 +187,7 @@ def ejemplo2():
 
 @app.route('/productos')
 def productos():
-    return render_template('plantilla1.html')
+    return render_template('productos.html')
 
 @app.route('/servicios')
 def servicios():

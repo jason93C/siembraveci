@@ -26,16 +26,9 @@
               <h5 class="card-title">{{ producto.nombre }}</h5>
               <p class="card-text">{{ producto.descripcion }}</p>
               <p class="fw-bold text-success mb-3">${{ producto.precio }}</p>
-              <form action="/agregar_carrito" method="post" class="mt-auto">
-                <input
-                  type="hidden"
-                  name="producto_id"
-                  value="{{ producto.id}}"
-                />
-                <button type="submit" class="btn btn-primary w-100">
-                  Agregar al carrito
-                </button>
-              </form>
+              <a href="{{ url_for('agregar_al_carrito', id=producto.id) }}" class="btn btn-primary w-100 mt-auto">
+                Agregar al carrito
+              </a>
             </div>
           </div>
         </div>
